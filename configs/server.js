@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import { dbConnection } from './mongo.js';
+import { dbConnection } from './mongoDB.js';
 import authRoutes from '../src/auth/auth.routes.js';
 
 class Server {

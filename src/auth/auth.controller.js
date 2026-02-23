@@ -1,5 +1,3 @@
-import { registerHelper } from '../../helpers/auth.helper.js';
-import { registerHelper, verifyAccountHelper } from '../../helpers/auth.helper.js';
 import { registerHelper, verifyAccountHelper, loginHelper } from '../../helpers/auth.helper.js';
 
 export const register = async (req, res) => {
