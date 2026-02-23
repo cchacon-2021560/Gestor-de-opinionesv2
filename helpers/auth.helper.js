@@ -42,3 +42,22 @@ export const registerHelper = async (userData, profilePictureUrl = null) => {
         throw error;
     }
 };
+
+export const verifyAccountHelper = async (token) => {
+    // Buscar usuario que coincida con el token
+    const user = await User.findOne({ verificationToken: token });
+
+    if (!user) {
+        throw new Error('Token de verificación inválido o expirado.');
+    }
+
+    // Actualizar estado y limpiar el token para que no se use dos veces
+    user.isVerified = true;
+    user.verificationToken = undefined; 
+    await user.save();
+
+    return {
+        success: true,
+        message: `Cuenta de ${user.username} verificada exitosamente.`
+    };
+};

@@ -1,5 +1,5 @@
 import { registerHelper } from '../../helpers/auth.helper.js';
-
+import { registerHelper, verifyAccountHelper } from '../../helpers/auth.helper.js';
 
 export const register = async (req, res) => {
     try {
@@ -20,6 +20,20 @@ export const register = async (req, res) => {
         return res.status(400).json({
             success: false,
             message: error.message || 'Error al registrar el usuario'
+        });
+    }
+};
+
+export const verifyAccount = async (req, res) => {
+    try {
+        const { token } = req.params;
+        const result = await verifyAccountHelper(token);
+
+        return res.status(200).json(result);
+    } catch (error) {
+        return res.status(400).json({
+            success: false,
+            message: error.message
         });
     }
 };
