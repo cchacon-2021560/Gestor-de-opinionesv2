@@ -16,13 +16,18 @@ export const validateJWT = async (req, res, next) => {
             return res.status(401).json({ message: 'Usuario no existe en la base de datos' });
         }
 
+        if (!user.status) {
+            return res.status(401).json({ message: 'Token no válido - usuario inactivo' });
+        }
+
         if (!user.isVerified) {
             return res.status(403).json({ message: 'Cuenta no verificada' });
         }
 
-        req.user = user;
+        req.user = user; 
         next();
     } catch (error) {
-        res.status(401).json({ message: 'Token no válido' });
+        console.log(error);
+        res.status(401).json({ message: 'Token no válido o expirado' });
     }
 };
