@@ -1,4 +1,5 @@
 import { createPostHelper } from '../../helpers/post.helper.js';
+import { updatePostHelper } from '../../helpers/post.helper.js';
 
 export const createPost = async (req, res) => {
     try {
