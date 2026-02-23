@@ -2,6 +2,8 @@ import User from '../src/users/user.model.js';
 import { hash } from 'argon2'; 
 import crypto from 'crypto';
 import { sendVerificationEmail } from './email-service.js';
+import { verify } from 'argon2';
+import { generateJWT } from './generate-jwt.js';
 
 export const registerHelper = async (userData, profilePictureUrl = null) => {
     try {
@@ -59,5 +61,41 @@ export const verifyAccountHelper = async (token) => {
     return {
         success: true,
         message: `Cuenta de ${user.username} verificada exitosamente.`
+    };
+};
+
+export const loginHelper = async (loginData) => {
+    const { identity, password } = loginData; 
+    const user = await User.findOne({
+        $or: [{ email: identity.toLowerCase() }, { username: identity.toLowerCase() }]
+    });
+
+    if (!user) {
+        throw new Error('Credenciales inválidas (usuario no encontrado).');
+    }
+
+    if (!user.isVerified) {
+        throw new Error('Por favor, verifica tu cuenta en tu correo electrónico antes de loguearte.');
+    }
+
+    const isPasswordValid = await verify(user.password, password);
+    if (!isPasswordValid) {
+        throw new Error('Credenciales inválidas (contraseña incorrecta).');
+    }
+
+    const token = await generateJWT(user._id, { 
+        username: user.username,
+        email: user.email 
+    });
+
+    return {
+        success: true,
+        message: `Bienvenido de nuevo, ${user.name}`,
+        token,
+        user: {
+            uid: user._id,
+            username: user.username,
+            name: user.name
+        }
     };
 };

@@ -1,5 +1,6 @@
 import { registerHelper } from '../../helpers/auth.helper.js';
 import { registerHelper, verifyAccountHelper } from '../../helpers/auth.helper.js';
+import { registerHelper, verifyAccountHelper, loginHelper } from '../../helpers/auth.helper.js';
 
 export const register = async (req, res) => {
     try {
@@ -32,6 +33,19 @@ export const verifyAccount = async (req, res) => {
         return res.status(200).json(result);
     } catch (error) {
         return res.status(400).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
+
+export const login = async (req, res) => {
+    try {
+        const result = await loginHelper(req.body);
+
+        return res.status(200).json(result);
+    } catch (error) {
+        return res.status(401).json({
             success: false,
             message: error.message
         });
