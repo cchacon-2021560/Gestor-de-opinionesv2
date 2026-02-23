@@ -20,6 +20,10 @@ const postSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: [true, 'El autor es obligatorio']
+    },
+    status: { 
+        type: Boolean, 
+        default: true 
     }
 }, {
     timestamps: true,

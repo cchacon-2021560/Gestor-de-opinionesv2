@@ -1,5 +1,5 @@
 import { updateProfileHelper } from '../../helpers/user.helper.js';
-import Post from '../posts/post.model.js'; 
+import Post from '../posts/post.model.js';
 import Comment from '../comments/comment.model.js';
 import User from '../users/user.model.js'
 
@@ -47,8 +47,8 @@ export const getUserHistory = async (req, res) => {
         }
 
         const [posts, comments] = await Promise.all([
-            Post.find({ authorId: id }), 
-            Comment.find({ author: id }) 
+            Post.find({ authorId: id, status: true }),
+            Comment.find({ authorId: id, status: true })
         ]);
 
         res.status(200).json({
@@ -68,6 +68,46 @@ export const getUserHistory = async (req, res) => {
             success: false,
             message: 'Error al obtener el historial del usuario',
             error: error.message
+        });
+    }
+};
+
+export const deleteUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const user = await User.findOneAndUpdate(
+            { _id: id, status: true },
+            { status: false },
+            { new: true }
+        );
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: 'El usuario no existe o ya ha sido desactivado previamente'
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: 'Cuenta de usuario desactivada correctamente',
+            user: {
+                username: user.username,
+                status: user.status
+            }
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Error al intentar desactivar el usuario',
+            error: error.message
+        });
+    }
+    if (req.usuario.id !== id) {
+        return res.status(401).json({
+            success: false,
+            message: 'No tienes permiso para desactivar esta cuenta'
         });
     }
 };

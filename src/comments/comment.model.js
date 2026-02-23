@@ -15,6 +15,10 @@ const commentSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'Post',
         required: [true, 'El post de origen es obligatorio']
+    },
+    status: { 
+        type: Boolean, 
+        default: true 
     }
 }, {
     timestamps: true,
