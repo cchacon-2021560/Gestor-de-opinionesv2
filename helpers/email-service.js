@@ -1,36 +1,42 @@
 import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
 
-const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: process.env.SMTP_PORT,
-    secure: process.env.SMTP_SECURE === 'true',
-    auth: {
-        user: process.env.SMTP_USERNAME,
-        pass: process.env.SMTP_PASSWORD,
-    },
-    tls: {
-        rejectUnauthorized: false 
+dotenv.config();
+
+const createTransporter = () => {
+    if (!process.env.SMTP_USERNAME || !process.env.SMTP_PASSWORD) {
+        console.error("No se encontraron credenciales en el .env");
     }
-});
+
+    return nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.SMTP_USERNAME,
+            pass: process.env.SMTP_PASSWORD,
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    });
+};
 
 export const sendVerificationEmail = async (email, name, token) => {
-    const link = `http://localhost:${process.env.PORT}/api/v1/auth/verify/${token}`;
-    
-    const mailOptions = {
-        from: `"${process.env.EMAIL_FROM_NAME}" <${process.env.EMAIL_FROM}>`,
-        to: email,
-        subject: 'Verifica tu cuenta - Gestor de Opiniones',
-        html: `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto;">
-                <h2>Hola ${name},</h2>
-                <p>Gracias por registrarte en nuestro Gestor de Opiniones.</p>
-                <p>Para completar tu registro, por favor copia el token.:</p>
-                <a href="${link}" style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Verificar mi cuenta</a>
-                <p style="margin-top: 20px;">Tu token de verificación es: <b>${token}</b></p>
-                <p>Si no creaste esta cuenta, puedes ignorar este mensaje.</p>
-            </div>
-        `
-    };
+    try {
+        const transporter = createTransporter();
+        const link = `http://localhost:${process.env.PORT || 3006}/api/v1/auth/verify/${token}`;
+        
+        const mailOptions = {
+            from: `"AuthDotnet App" <${process.env.SMTP_USERNAME}>`,
+            to: email,
+            subject: 'Verifica tu cuenta',
+            html: `<h1>Hola ${name}</h1><p>Tu token es: <b>${token}</b></p><a href="${link}">Click aquí para verificar</a>`
+        };
 
-    return await transporter.sendMail(mailOptions);
+        const info = await transporter.sendMail(mailOptions);
+        console.log("Correo enviado satisfactoriamente: ", info.messageId);
+        return info;
+    } catch (error) {
+        console.error("Error real al enviar correo:", error);
+        throw error;
+    }
 };

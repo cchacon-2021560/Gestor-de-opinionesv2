@@ -4,6 +4,9 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import { dbConnection } from './mongoDB.js';
 import authRoutes from '../src/auth/auth.routes.js';
+import postRoutes from '../src/posts/post.routes.js';
+import commentRoutes from '../src/comments/comment.routes.js'
+import userRoutes from '../src/users/user.routes.js'
 
 class Server {
     constructor() {
@@ -28,8 +31,11 @@ class Server {
         this.app.use(morgan('dev'));
     }
 
-    routes() {
+routes() {
         this.app.use(`${this.basePath}/auth`, authRoutes);
+        this.app.use(`${this.basePath}/posts`, postRoutes);
+        this.app.use(`${this.basePath}/comments`, commentRoutes); 
+        this.app.use(`${this.basePath}/users`, userRoutes);
     }
 
     listen() {
