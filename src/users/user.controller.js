@@ -111,3 +111,34 @@ export const deleteUser = async (req, res) => {
         });
     }
 };
+
+export const getUsers = async (req, res) => {
+    try {
+        // por si quiero definir limite en la ruta
+        const { limit = 10, from = 0 } = req.query;
+        const query = {status: true}; 
+
+        const [ total, users ] = await Promise.all([
+            User.countDocuments(query),
+            User.find(query)
+                .skip(Number(from))
+                .limit(Number(limit))
+                .select('-password -__v') // ocultar contra
+        ]);
+
+        res.status(200).json({
+            success: true,
+            message: 'Lista de usuarios obtenida correctamente',
+            total,
+            users
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Error al obtener la lista de usuarios',
+            error: error.message
+        });
+    }
+
+};

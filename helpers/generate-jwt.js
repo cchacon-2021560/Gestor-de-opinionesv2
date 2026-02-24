@@ -11,7 +11,7 @@ export const generateJWT = (userId, extraClaims = {}) => {
         };
 
         const signOptions = {
-            expiresIn: process.env.JWT_EXPIRES_IN || '8h',
+            expiresIn: process.env.JWT_EXPIRES_IN || ' 10m',
             issuer: process.env.JWT_ISSUER || 'OpinionManager',
             audience: process.env.JWT_AUDIENCE || 'OpinionManagerUsers'
         };
