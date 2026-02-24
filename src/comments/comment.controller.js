@@ -23,12 +23,9 @@ export const updateComment = async (req, res) => {
 export const deleteComment = async (req, res) => {
     try {
         const { id } = req.params;
+        const authenticatedUser = req.user;
 
-        const comment = await Comment.findOneAndUpdate(
-            { _id: id, status: true },
-            { status: false },
-            { new: true }
-        );
+        const comment = await Comment.findOne({ _id: id, status: true });
 
         if (!comment) {
             return res.status(404).json({
@@ -36,6 +33,16 @@ export const deleteComment = async (req, res) => {
                 message: 'El comentario no existe o ya fue borrado anteriormente'
             });
         }
+
+        if (comment.authorId.toString() !== authenticatedUser._id.toString()) {
+            return res.status(403).json({ 
+                success: false,
+                message: 'No tienes permiso para eliminar un comentario que no te pertenece' 
+            });
+        }
+
+        comment.status = false;
+        await comment.save();
 
         res.status(200).json({
             success: true,
