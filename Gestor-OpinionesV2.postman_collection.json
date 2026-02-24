@@ -1,0 +1,475 @@
+{
+  "info": {
+    "_postman_id": "2e1369a6-ce07-4219-92a8-3579a14e420e",
+    "name": "Gestor-OpinionesV2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48332499",
+    "_collection_link": "https://go.postman.co/collection/48332499-2e1369a6-ce07-4219-92a8-3579a14e420e?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "COMENTARIOS",
+      "item": [
+        {
+          "name": "AGREGAR_COMENTARIO",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTljZGJkYWIzZDNlOTZkZmQxMDIxYzMiLCJqdGkiOiJmOGQ0MjJhNi1jYzY3LTQ3NzItODY3OS0wMTcyYWM4NjcwMDciLCJpYXQiOjE3NzE4OTA3ODYsInVzZXJuYW1lIjoibGFndW5hIiwiZW1haWwiOiJ2YWxsZWNhbm81OUBnbWFpbC5jb20iLCJleHAiOjE3NzE5MTk1ODYsImF1ZCI6Ik9waW5pb25NYW5hZ2VyVXNlcnMiLCJpc3MiOiJPcGluaW9uTWFuYWdlciJ9.pG-H3ABPxu_YAXFDR9qoL0sSDYuASTVfkbC_vJDLCg8",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"text\": \"¡Excelente publicación! Estoy de acuerdo contigo.\",\r\n  \"postId\": \"699ce7106f6f3fb46ec3dff4\" \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3006/api/v1/comments",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3006",
+              "path": [
+                "api",
+                "v1",
+                "comments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "EDITAR_COMENTARIO",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTljZGJkYWIzZDNlOTZkZmQxMDIxYzMiLCJqdGkiOiI1MmUxYzY5OS02YTY4LTQ4NjAtOTgyOS01NGZjMmI4OTRlMjMiLCJpYXQiOjE3NzE4OTEwNTUsInVzZXJuYW1lIjoibGFndW5hIiwiZW1haWwiOiJ2YWxsZWNhbm81OUBnbWFpbC5jb20iLCJleHAiOjE3NzE5MTk4NTUsImF1ZCI6Ik9waW5pb25NYW5hZ2VyVXNlcnMiLCJpc3MiOiJPcGluaW9uTWFuYWdlciJ9.2-BJvBDqIQSd1o6mybYwvGpZAOalRH-8iazDXTA3Qnw",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"text\": \"Hola si estoy de acuerdo amigo mio.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3006/api/v1/comments/699ce8b55564ae6304c17ebf",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3006",
+              "path": [
+                "api",
+                "v1",
+                "comments",
+                "699ce8b55564ae6304c17ebf"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ELIMINAR_COMENTARIO",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "x-token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTljZDU3MTk3NjUyYjhhYjhiOWE4OTciLCJqdGkiOiJlNDYyMzZkNy04Njg1LTQ5MzUtODZhNS1jZTJjYThjMzAxMTMiLCJpYXQiOjE3NzE4OTA5OTksInVzZXJuYW1lIjoibXBvZGZzcGEiLCJlbWFpbCI6ImNhcmxvc2NkY2Q4MTdAZ21haWwuY29tIiwiZXhwIjoxNzcxOTE5Nzk5LCJhdWQiOiJPcGluaW9uTWFuYWdlclVzZXJzIiwiaXNzIjoiT3Bpbmlvbk1hbmFnZXIifQ.ippSdoM03qh_Eqy8tn0vq1GQSEjeMCMtLu_jmAbarI4",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3006/api/v1/comments/699ce8b55564ae6304c17ebf",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3006",
+              "path": [
+                "api",
+                "v1",
+                "comments",
+                "699ce8b55564ae6304c17ebf"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "POSTS",
+      "item": [
+        {
+          "name": "AGREGAR_POST",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTljZDU3MTk3NjUyYjhhYjhiOWE4OTciLCJqdGkiOiJhODMwNWE0ZS04OWFhLTRhMGQtOWE1NC01YzA0OGVkYmQ2ZTkiLCJpYXQiOjE3NzE4ODYwNDIsInVzZXJuYW1lIjoibXBvZGZzcGEiLCJlbWFpbCI6ImNhcmxvc2NkY2Q4MTdAZ21haWwuY29tIiwiZXhwIjoxNzcxOTE0ODQyLCJhdWQiOiJPcGluaW9uTWFuYWdlclVzZXJzIiwiaXNzIjoiT3Bpbmlvbk1hbmFnZXIifQ.cNheISuzYoS6Vp3JJINX3PjNAqrqVYXf0gMgdU4I2sM",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Mi primera opinión\",\r\n  \"category\": \"Deportes\",\r\n  \"text\": \"El Barcelona es el mejor equipo del mundo.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3006/api/v1/posts",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3006",
+              "path": [
+                "api",
+                "v1",
+                "posts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "EDITAR_POST",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTljZGJkYWIzZDNlOTZkZmQxMDIxYzMiLCJqdGkiOiI1YmFlZmRmZC1iNDI2LTQzODQtYjZiZi0xMjI4OTJjNzJlZDQiLCJpYXQiOjE3NzE4ODk0ODEsInVzZXJuYW1lIjoibGFndW5hIiwiZW1haWwiOiJ2YWxsZWNhbm81OUBnbWFpbC5jb20iLCJleHAiOjE3NzE5MTgyODEsImF1ZCI6Ik9waW5pb25NYW5hZ2VyVXNlcnMiLCJpc3MiOiJPcGluaW9uTWFuYWdlciJ9.aLbsh0koDD2rPICfy-bmzdVVv-Vqnf3yGTowX250pls",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Mi opinión actualizada\",\r\n  \"category\": \"Deportes\",\r\n  \"text\": \"El Barcelona es el mejor ellquipo de la historia.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3006/api/v1/posts/699ce7106f6f3fb46ec3dff4",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3006",
+              "path": [
+                "api",
+                "v1",
+                "posts",
+                "699ce7106f6f3fb46ec3dff4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ELIMINAR_POST",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "x-token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTljZGJkYWIzZDNlOTZkZmQxMDIxYzMiLCJqdGkiOiI1YmFlZmRmZC1iNDI2LTQzODQtYjZiZi0xMjI4OTJjNzJlZDQiLCJpYXQiOjE3NzE4ODk0ODEsInVzZXJuYW1lIjoibGFndW5hIiwiZW1haWwiOiJ2YWxsZWNhbm81OUBnbWFpbC5jb20iLCJleHAiOjE3NzE5MTgyODEsImF1ZCI6Ik9waW5pb25NYW5hZ2VyVXNlcnMiLCJpc3MiOiJPcGluaW9uTWFuYWdlciJ9.aLbsh0koDD2rPICfy-bmzdVVv-Vqnf3yGTowX250pls",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3006/api/v1/posts/699ce7106f6f3fb46ec3dff4",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3006",
+              "path": [
+                "api",
+                "v1",
+                "posts",
+                "699ce7106f6f3fb46ec3dff4"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "HISTORIAL_ACTIVIDAD",
+      "item": [
+        {
+          "name": "HISTORIAL_ACTIVIDAD",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTljZGJkYWIzZDNlOTZkZmQxMDIxYzMiLCJqdGkiOiJlZGM1NmJhZi0zNzk3LTRkMGEtOGNjMC0xODQzNmNhMGRkMjgiLCJpYXQiOjE3NzE4ODc2MTcsInVzZXJuYW1lIjoibGFndW5hIiwiZW1haWwiOiJ2YWxsZWNhbm81OUBnbWFpbC5jb20iLCJleHAiOjE3NzE5MTY0MTcsImF1ZCI6Ik9waW5pb25NYW5hZ2VyVXNlcnMiLCJpc3MiOiJPcGluaW9uTWFuYWdlciJ9.MrsE-3lEVxNofHZ5ULiyJ9H3-I1ZcdLhGBM8OJUtuu0",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3006/api/v1/users/history/699ce3f831189e3042b40fbe",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3006",
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "history",
+                "699ce3f831189e3042b40fbe"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "USUARIOS",
+      "item": [
+        {
+          "name": "AUTENTICACIÓN",
+          "item": [
+            {
+              "name": "LOGIN",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"identity\": \"HOLA\", \r\n  \"password\": \"Password123!\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/api/v1/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "VERIFICACION",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/api/v1/auth/verify/8ccab72d5d22bbf2b9e5b9b52b26b62546d4fdb3",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "verify",
+                    "8ccab72d5d22bbf2b9e5b9b52b26b62546d4fdb3"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "ELIMINAR_USUARIO",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "x-token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTljZGJkYWIzZDNlOTZkZmQxMDIxYzMiLCJqdGkiOiIyYjRiOWI0Zi0wM2FhLTRmNzUtOGM1NS1jMmNhZjE1NTliODYiLCJpYXQiOjE3NzE4ODkxNjksInVzZXJuYW1lIjoibGFndW5hIiwiZW1haWwiOiJ2YWxsZWNhbm81OUBnbWFpbC5jb20iLCJleHAiOjE3NzE5MTc5NjksImF1ZCI6Ik9waW5pb25NYW5hZ2VyVXNlcnMiLCJpc3MiOiJPcGluaW9uTWFuYWdlciJ9.bcn33rVgDnTx8fid1MTHvHlGdbepH8QxAlZr89bzVr8",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3006/api/v1/users/699cdbdab3d3e96dfd1021c3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3006",
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "699cdbdab3d3e96dfd1021c3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "REGISTRO",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"dsf\",\r\n  \"surname\": \"sdfsf\",\r\n  \"username\": \"messi\",\r\n  \"email\": \"carloscdcd817@gmail.com\",\r\n  \"password\": \"Password123!\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3006/api/v1/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3006",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "EDITAR_USUARIO",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTljNjQyZmQ5YjUyZDZhNzBlMTkzMTEiLCJqdGkiOiJlZDA5OWM1My1iOTliLTQwMzYtODcwNy01ZmY1M2QzZGRmNzAiLCJpYXQiOjE3NzE4NTY5NzgsInVzZXJuYW1lIjoibWhpbGwiLCJlbWFpbCI6ImNjaGFjb24tMjAyMTU2MEBraW5hbC5lZHUuZ3QiLCJleHAiOjE3NzE4ODU3NzgsImF1ZCI6Ik9waW5pb25NYW5hZ2VyVXNlcnMiLCJpc3MiOiJPcGluaW9uTWFuYWdlciJ9.0Ekz7nVdxRZz7QIzKFFhz4eQMv2K7wzllSAaBY4Uokk",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Miguel Angel\",\r\n  \"surname\": \"Hill Fuentes\",\r\n  \"password\": \"NuevaPassword2026!\",\r\n  \"oldPassword\": \"Password123!\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3006/api/v1/users/profile",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3006",
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "VER_USUARIOS",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTljZGJkYWIzZDNlOTZkZmQxMDIxYzMiLCJqdGkiOiI1MmUxYzY5OS02YTY4LTQ4NjAtOTgyOS01NGZjMmI4OTRlMjMiLCJpYXQiOjE3NzE4OTEwNTUsInVzZXJuYW1lIjoibGFndW5hIiwiZW1haWwiOiJ2YWxsZWNhbm81OUBnbWFpbC5jb20iLCJleHAiOjE3NzE5MTk4NTUsImF1ZCI6Ik9waW5pb25NYW5hZ2VyVXNlcnMiLCJpc3MiOiJPcGluaW9uTWFuYWdlciJ9.2-BJvBDqIQSd1o6mybYwvGpZAOalRH-8iazDXTA3Qnw",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3006/api/v1/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3006",
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
